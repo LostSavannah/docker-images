@@ -1,0 +1,2 @@
+mongod --bind_ip 0.0.0.0 --fork --dbpath /data/mongodb --logpath /data/mongodb/log/log.txt
+mongosh admin --eval 'db.createUser({user: "sa",pwd: "12345678",roles: [ { role: "userAdminAnyDatabase", db: "admin"}]})'

@@ -1,0 +1,25 @@
+from ubuntu:latest
+
+env DEBIAN_FRONTEND=noninteractive
+
+run apt-get update
+run apt-get install -y git
+
+run echo "hel"
+
+run apt-get remove -y nodejs npm
+
+copy ./install_rabbit.sh .
+run chmod 777 install_rabbit.sh
+run ./install_rabbit.sh
+
+copy ./configure_rabbit.sh .
+run chmod 777 configure_rabbit.sh
+run ./configure_rabbit.sh
+run ./configure_rabbit.sh
+
+run git clone https://github.com/LostSavannah/docker-scripts
+run chmod 777 ./docker-scripts/*
+run ./docker-scripts/install_node_npm.sh
+run ./docker-scripts/install_rabbit.sh
+cmd bash

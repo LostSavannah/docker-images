@@ -1,0 +1,22 @@
+from ubuntu:latest
+env DEBIAN_FRONTEND=noninteractive
+
+workdir /app
+
+run apt-get update
+run apt-get install -y wget gnupg curl tmux ca-certificates
+
+run curl -fsSL https://pgp.mongodb.com/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+run echo 'deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse' | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+run apt-get update
+run apt-get install -y mongodb-org 
+
+run mkdir -p /data/mongodb/db /data/mongodb/log
+copy ./configure.sh .
+run chmod +x ./configure.sh
+run ./configure.sh
+
+expose 27017
+copy ./entrypoint.sh .
+run chmod +x ./entrypoint.sh
+cmd ./entrypoint.sh

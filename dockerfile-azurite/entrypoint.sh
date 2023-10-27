@@ -1,0 +1,1 @@
+azurite --location /data/azurite/data --debug /data/azurite/log/debug.log
