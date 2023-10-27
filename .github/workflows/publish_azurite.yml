@@ -1,0 +1,18 @@
+name: Build and publish azurite container
+
+on:
+  push:
+    branches: [ "azurite" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          cd dockerfile-azurite
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker build --no-cache -t common-azurite .
+          docker tag common-azurite coderookieerick/common-azurite
+          docker push coderookieerick/common-azurite:latest
