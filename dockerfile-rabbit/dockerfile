@@ -16,9 +16,11 @@ run echo 'deb-src [signed-by=/usr/share/keyrings/rabbitmq.9F4587F226208342.gpg] 
 run apt-get update
 run apt-get install -y rabbitmq-server --fix-missing
 
+env RABBITMQ_USER=sa
+env RABBITMQ_PASSWORD=12345678
+
 copy ./configure.sh .
 run chmod +x ./configure.sh
-run ./configure.sh
 
 copy ./entrypoint.sh .
 run chmod +x ./entrypoint.sh
