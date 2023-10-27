@@ -1,0 +1,18 @@
+name: Build node container
+
+on:
+  push:
+    branches: [ "node" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          cd dockerfile-node
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker build -t common-node .
+          docker tag common-node coderookieerick/common-node
+          docker push coderookieerick/common-node:latest
