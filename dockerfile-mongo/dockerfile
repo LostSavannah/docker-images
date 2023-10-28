@@ -12,11 +12,15 @@ run apt-get update
 run apt-get install -y mongodb-org 
 
 run mkdir -p /data/mongodb/db /data/mongodb/log
-copy ./configure.sh .
-run chmod +x ./configure.sh
-run ./configure.sh
 
 expose 27017
+
+env MONGODB_USER=sa
+env MONGODB_PASSWORD=12345678
+
+copy ./configure.sh .
+run chmod +x ./configure.sh
+
 copy ./entrypoint.sh .
 run chmod +x ./entrypoint.sh
 cmd ./entrypoint.sh
