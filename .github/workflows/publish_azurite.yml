@@ -2,10 +2,12 @@ name: Build and publish azurite container
 
 on:
   push:
-    branches: [ "azurite" ]
+    branches:
+      - 'azurite'
   workflow_dispatch:
   schedule:
-    cron: ["00 00 * * *"]
+    cron: 
+      - '5 0 * * *'
 
 jobs:
   build:
