@@ -1,9 +1,9 @@
-name: Scheduled build and publish node container
+name: Node 9am build
 
 
 on:
   schedule:
-    - cron: "50 0 * * *"
+    - cron: "0 13 * * *"
 
 jobs:
   build:

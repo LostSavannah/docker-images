@@ -1,9 +1,9 @@
-name: Scheduled build and publish mongo container
+name: Mongo 3am build
 
 
 on:
   schedule:
-    - cron: "50 0 * * *"
+    - cron: "0 7 * * *"
 
 jobs:
   build:

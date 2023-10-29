@@ -1,9 +1,9 @@
-name: Scheduled build and publish rabbit container
+name: Rabbit 3pm build
 
 
 on:
   schedule:
-    - cron: "50 0 * * *"
+    - cron: "* 19 * * *"
 
 jobs:
   build:
