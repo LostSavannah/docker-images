@@ -2,7 +2,7 @@ name: Build and publish azurite container
 
 on:
   schedule:
-    cron: ['20 0 * * *']
+    - cron: "20 0 * * *"
 
 jobs:
   build:
