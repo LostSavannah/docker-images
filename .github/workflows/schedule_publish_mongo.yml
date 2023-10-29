@@ -1,0 +1,20 @@
+name: Scheduled build and publish mongo container
+
+
+on:
+  schedule:
+    - cron: "50 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: mongo
+      - run: |
+          cd dockerfile-mongo
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker build --no-cache -t common-mongo .
+          docker tag common-mongo coderookieerick/common-mongo
+          docker push coderookieerick/common-mongo:latest

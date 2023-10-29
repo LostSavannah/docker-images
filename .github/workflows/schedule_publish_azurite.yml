@@ -1,17 +1,20 @@
-name: Build and publish azurite container
+name: Scheduled build and publish azurite container
+
 
 on:
   schedule:
-    - cron: "20 0 * * *"
+    - cron: "50 0 * * *"
 
 jobs:
   build:
     runs-on: ubuntu-01
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: azurite
       - run: |
           cd dockerfile-azurite
           docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
           docker build --no-cache -t common-azurite .
           docker tag common-azurite coderookieerick/common-azurite
-          echo docker push coderookieerick/common-azurite:latest
+          docker push coderookieerick/common-azurite:latest

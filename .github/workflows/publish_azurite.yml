@@ -2,7 +2,7 @@ name: Build and publish azurite container
 
 on:
   push:
-    branches: ['azurite']
+    branches: [ "azurite" ]
   workflow_dispatch:
 
 jobs:
