@@ -15,6 +15,6 @@ jobs:
       - run: |
           cd dockerfile-rabbit
           docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
-          docker build --no-cache -t common-rabbit .
+          docker build -t common-rabbit .
           docker tag common-rabbit coderookieerick/common-rabbit
           docker push coderookieerick/common-rabbit:latest

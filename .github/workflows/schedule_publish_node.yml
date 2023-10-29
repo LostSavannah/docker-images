@@ -15,6 +15,6 @@ jobs:
       - run: |
           cd dockerfile-node
           docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
-          docker build --no-cache -t common-node .
+          docker build -t common-node .
           docker tag common-node coderookieerick/common-node
           docker push coderookieerick/common-node:latest

@@ -13,6 +13,6 @@ jobs:
       - run: |
           cd dockerfile-azurite
           docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
-          docker build --no-cache -t common-azurite .
+          docker build -t common-azurite .
           docker tag common-azurite coderookieerick/common-azurite
           docker push coderookieerick/common-azurite:latest
