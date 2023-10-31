@@ -3,7 +3,7 @@ name: Rabbit 3pm build
 
 on:
   schedule:
-    - cron: "* 19 * * *"
+    - cron: "0 19 * * *"
 
 jobs:
   build:
