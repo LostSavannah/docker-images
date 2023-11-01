@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN apt-get install -y apache2 php libapache2-mod-php
+
+COPY ./index.php /var/www/html/
+RUN rm /var/www/html/index.html
+
+COPY ./entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
+
+EXPOSE 80
+
+CMD ./entrypoint.sh

@@ -1,0 +1,86 @@
+name: Scheduled publish
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+
+jobs:
+  publish-azurite:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: azurite
+      - name: Build
+        run: |
+          cd dockerfile-azurite
+          docker build -t common-azurite .
+      - name: Publish
+        run: |
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker tag common-azurite coderookieerick/common-azurite
+          docker push coderookieerick/common-azurite:latest
+
+  publish-mongo:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: mongo
+      - name: Build
+        run: |
+          cd dockerfile-mongo
+          docker build -t common-mongo .
+      - name: Publish
+        run: |
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker tag common-mongo coderookieerick/common-mongo
+          docker push coderookieerick/common-mongo:latest
+
+  publish-node:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: node
+      - name: Build
+        run: |
+          cd dockerfile-node
+          docker build -t common-node .
+      - name: Publish
+        run: |
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker tag common-node coderookieerick/common-node
+          docker push coderookieerick/common-node:latest
+
+  publish-rabbit:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: rabbit
+      - name: Build
+        run: |
+          cd dockerfile-rabbit
+          docker build -t common-rabbit .
+      - name: Publish
+        run: |
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker tag common-rabbit coderookieerick/common-rabbit
+          docker push coderookieerick/common-rabbit:latest
+
+  publish-php:
+    runs-on: ubuntu-01
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: php
+      - name: Build
+        run: |
+          cd dockerfile-php
+          docker build -t common-php .
+      - name: Publish
+        run: |
+          docker login -u coderookieerick -p ${{ secrets.COMMON_DOCKER_IMAGES_TOKEN }}
+          docker tag common-php coderookieerick/common-php
+          docker push coderookieerick/common-php:latest

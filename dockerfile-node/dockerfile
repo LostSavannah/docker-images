@@ -1,13 +1,13 @@
-from ubuntu:latest
-env DEBIAN_FRONTEND=noninteractive
-env NODE_MAJOR=20
+FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NODE_MAJOR=20
 
-run apt-get update
-run apt-get install -y wget gnupg curl tmux ca-certificates
+RUN apt-get update
+RUN apt-get install -y wget gnupg curl tmux ca-certificates
 
-run curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-run echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-run apt-get update
-run apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update
+RUN apt-get install -y nodejs
 
-cmd ./bin/bash
+CMD ./bin/bash
