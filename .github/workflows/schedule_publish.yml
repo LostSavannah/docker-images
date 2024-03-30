@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish-azurite:
-    runs-on: ubuntu-01
+    runs-on: ubuntu-test
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,7 +23,7 @@ jobs:
           docker push coderookieerick/common-azurite:latest
 
   publish-mongo:
-    runs-on: ubuntu-01
+    runs-on: ubuntu-test
     steps:
       - uses: actions/checkout@v3
         with:
@@ -39,7 +39,7 @@ jobs:
           docker push coderookieerick/common-mongo:latest
 
   publish-node:
-    runs-on: ubuntu-01
+    runs-on: ubuntu-test
     steps:
       - uses: actions/checkout@v3
         with:
@@ -55,7 +55,7 @@ jobs:
           docker push coderookieerick/common-node:latest
 
   publish-rabbit:
-    runs-on: ubuntu-01
+    runs-on: ubuntu-test
     steps:
       - uses: actions/checkout@v3
         with:
